@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "423399823244",
+    "firebase_url": "https://home-service-app-2a3d1.firebaseio.com",
+    "project_id": "home-service-app-2a3d1",
+    "storage_bucket": "home-service-app-2a3d1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:423399823244:android:9dd88d25759cde4f67a8a9",
+        "android_client_info": {
+          "package_name": "naqib.com.homeservice"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "423399823244-0tddvh724060pkiksesjj2t85i9vim38.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCXeHbtPYNukh09K6LCfihUjRJINmjL1w4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "423399823244-0tddvh724060pkiksesjj2t85i9vim38.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
