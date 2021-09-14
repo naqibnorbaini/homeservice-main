@@ -16,6 +16,13 @@ class _ServiceHomeCleaningState extends State<ServiceHomeCleaning> {
   TextEditingController districtController = TextEditingController();
   TextEditingController rateController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+  void _saveForm() {
+    final isValid = _formKey.currentState.validate();
+    if (!isValid) {
+      return;
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,6 +32,7 @@ class _ServiceHomeCleaningState extends State<ServiceHomeCleaning> {
         backgroundColor: Colors.deepOrange,
       ),
       body: Form(
+        key: _formKey,
         child: ListView(
           children: <Widget>[
             Container(
@@ -104,18 +112,23 @@ class _ServiceHomeCleaningState extends State<ServiceHomeCleaning> {
                 padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
                 child: RaisedButton(
                   textColor: Colors.white,
-                  color: Colors.cyan,
+                  color: Colors.deepOrange,
                   child: Text('Add Service'),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(18.0),
                   ),
                   onPressed: () {
-                    context.read<AuthenticationService>().addHome(
-                      title: titleController.text,
-                      district: districtController.text,
-                      rate: rateController.text,
-                      description: descriptionController.text,
-                    );
+                    if (_formKey.currentState.validate()) {
+                      context.read<AuthenticationService>().addHome(
+                        title: titleController.text,
+                        district: districtController.text,
+                        rate: rateController.text,
+                        description: descriptionController.text,
+                      );
+                      showAlertDialog(context);
+                      // TODO submit
+                    }
+
                   },
                 )
             ),
@@ -125,3 +138,36 @@ class _ServiceHomeCleaningState extends State<ServiceHomeCleaning> {
     );
   }
 }
+
+showAlertDialog(BuildContext context) {
+
+  // set up the button
+  Widget okButton = FlatButton(
+    child: Text("OK"),
+    onPressed: () {
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => MainPageService(),
+        ),); },
+  );
+
+  // set up the AlertDialog
+  AlertDialog alert = AlertDialog(
+    title: Text(""),
+    content: Text("You are successfully added a service!"),
+    actions: [
+      okButton,
+    ],
+  );
+
+  // show the dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
+}
+

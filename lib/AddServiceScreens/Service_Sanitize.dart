@@ -16,6 +16,13 @@ class _ServiceSanitizeState extends State<ServiceSanitize> {
   TextEditingController districtController = TextEditingController();
   TextEditingController rateController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+  void _saveForm() {
+    final isValid = _formKey.currentState.validate();
+    if (!isValid) {
+      return;
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,6 +32,7 @@ class _ServiceSanitizeState extends State<ServiceSanitize> {
         backgroundColor: Colors.deepOrange,
       ),
       body: Form(
+        key: _formKey,
         child: ListView(
           children: <Widget>[
             Container(
@@ -110,12 +118,16 @@ class _ServiceSanitizeState extends State<ServiceSanitize> {
                     borderRadius: BorderRadius.circular(18.0),
                   ),
                   onPressed: () {
-                    context.read<AuthenticationService>().addSanitize(
-                      title: titleController.text,
-                      district: districtController.text,
-                      rate: rateController.text,
-                      description: descriptionController.text,
-                    );
+                    if (_formKey.currentState.validate()) {
+                      context.read<AuthenticationService>().addSanitize(
+                        title: titleController.text,
+                        district: districtController.text,
+                        rate: rateController.text,
+                        description: descriptionController.text,
+                      );
+                      showAlertDialog(context);
+                      // TODO submit
+                    }
                   },
                 )
             ),
@@ -124,4 +136,36 @@ class _ServiceSanitizeState extends State<ServiceSanitize> {
       ),
     );
   }
+}
+
+showAlertDialog(BuildContext context) {
+
+  // set up the button
+  Widget okButton = FlatButton(
+    child: Text("OK"),
+    onPressed: () {
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => MainPageService(),
+        ),); },
+  );
+
+  // set up the AlertDialog
+  AlertDialog alert = AlertDialog(
+    title: Text(""),
+    content: Text("You are successfully added a service!"),
+    actions: [
+      okButton,
+    ],
+  );
+
+  // show the dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
 }

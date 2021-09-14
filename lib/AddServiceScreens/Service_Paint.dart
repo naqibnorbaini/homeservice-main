@@ -16,6 +16,14 @@ class _ServicePaintState extends State<ServicePaint> {
   TextEditingController districtController = TextEditingController();
   TextEditingController rateController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+  void _saveForm() {
+    final isValid = _formKey.currentState.validate();
+    if (!isValid) {
+      return;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,6 +33,7 @@ class _ServicePaintState extends State<ServicePaint> {
         backgroundColor: Colors.deepOrange,
       ),
       body: Form(
+        key: _formKey,
         child: ListView(
           children: <Widget>[
             Container(
@@ -109,13 +118,16 @@ class _ServicePaintState extends State<ServicePaint> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(18.0),
                   ),
-                  onPressed: () {
+                  onPressed: () {if (_formKey.currentState.validate()) {
                     context.read<AuthenticationService>().addPaint(
                       title: titleController.text,
                       district: districtController.text,
                       rate: rateController.text,
                       description: descriptionController.text,
                     );
+                    showAlertDialog(context);
+                    // TODO submit
+                  }
                   },
                 )
             ),
@@ -125,3 +137,37 @@ class _ServicePaintState extends State<ServicePaint> {
     );
   }
 }
+
+
+showAlertDialog(BuildContext context) {
+
+  // set up the button
+  Widget okButton = FlatButton(
+    child: Text("OK"),
+    onPressed: () {
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => MainPageService(),
+        ),); },
+  );
+
+  // set up the AlertDialog
+  AlertDialog alert = AlertDialog(
+    title: Text(""),
+    content: Text("You are successfully added a service!"),
+    actions: [
+      okButton,
+    ],
+  );
+
+  // show the dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
+}
+

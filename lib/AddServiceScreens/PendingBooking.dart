@@ -70,7 +70,7 @@ class _PendingBookingState extends State<PendingBooking> {
                   child: ListTile(
                     isThreeLine: true,
                       title: Text(("" + document['title'])+ (" ,"+document['name'])),
-                      subtitle: Text(("" + document['address'])+ (" ,"+document['date'])+ (" ,"+document['time'])),
+                      subtitle: Text(("" + document['address'])+ (" ,"+document['date'])+ (" ,"+document['time'])+ (" ,"+document['phonenumber'])),
 
                       trailing: new IconButton(
                         icon: new Icon(Icons.delete),

@@ -161,18 +161,6 @@ class _ProfileState extends State<Profile> {
                         },
                         child: Text("Booking History"),
                       ),
-                      RaisedButton(
-
-                        onPressed: (){
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => MainPageService(),
-                            ),);
-
-                        },
-                        child: Text("Service"),
-                      ),
 
                       RaisedButton(
                         onPressed: () {

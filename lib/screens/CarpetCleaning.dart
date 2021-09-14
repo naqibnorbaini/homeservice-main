@@ -13,7 +13,7 @@ class _CarpetCleaningState extends State<CarpetCleaning> {
     return new Scaffold(
       appBar: new AppBar(
         title: new Text(
-            'Grass Cutting'),
+            'Carpet Cleaning'),
       ),
       body: StreamBuilder(
           stream: FirebaseFirestore.instance.collection('CarpetCleaning').snapshots(),

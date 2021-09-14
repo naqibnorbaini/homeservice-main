@@ -162,25 +162,21 @@ class DetailPage extends StatelessWidget {
                   child: Text('Submit'),
                   onPressed:() {
                     if (_formKey.currentState.validate()) {
+
+                      context.read<AuthenticationService>().addBooking(
+                        name : nameController.text,
+                        phonenumber: phoneController.text,
+                        address: addressController.text,
+                        notes: notesController.text,
+                        title: detailDocument['title'],
+                        district: detailDocument['district'],
+                        serviceID: detailDocument['serviceID'],
+                        time: timeController.text,
+                        date: dateController.text,
+                      );
                       showAlertDialog(context);
                       // TODO submit
                     }
-
-                    context.read<AuthenticationService>().addBooking(
-                 name : nameController.text,
-                 phonenumber: phoneController.text,
-                 address: addressController.text,
-                 notes: notesController.text,
-                  title: detailDocument['title'],
-                      district: detailDocument['district'],
-                 serviceID: detailDocument['serviceID'],
-                 time: timeController.text,
-                  date: dateController.text,
-
-
-
-
-                  );
                     }
                 )
 

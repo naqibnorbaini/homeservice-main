@@ -6,11 +6,12 @@ import 'package:homeservice/screens/HomeSanitize.dart';
 import 'package:homeservice/screens/PaintJob.dart';
 import 'package:homeservice/screens/Vacuuming.dart';
 import 'package:homeservice/screens/WindowCleaning.dart';
+import 'package:homeservice/screens/Wiring.dart';
 
 class MainPage extends StatelessWidget {
 
   var services = [
-    "House Cleaning Service",
+    "house Cleaning Service",
     "Carpet Cleaning Service",
     "Grass Cutting Service",
     "Paint job Service",
@@ -56,7 +57,7 @@ class MainPage extends StatelessWidget {
     return Card(
       child: InkWell(
         onTap: (){
-          if (services[index] == "House Cleaning Service") {
+          if (services[index] == "house Cleaning Service") {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => HomeCleaning()),
@@ -88,7 +89,7 @@ class MainPage extends StatelessWidget {
           }else if (services[index] == "Wiring Service") {
             Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => GrassCutting()));
+                MaterialPageRoute(builder: (context) => Wiring()));
           }
         },
        child: Column(
